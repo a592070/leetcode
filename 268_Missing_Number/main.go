@@ -50,3 +50,17 @@ func missingNumber2(nums []int) int {
 	}
 	return actualSum - sum
 }
+
+func missingNumber3(nums []int) (sum int) {
+	/*
+		[3,0,1]
+		i=0, sum = (0^3)^0 = 3^0 = 3
+		i=1, sum = (1^0)^3 = 1^3 = 2
+		i=2, sum = (2^1)^2 = 3^2 = 1
+		result = 1 ^ 3 = 2
+	*/
+	for i, num := range nums {
+		sum ^= i ^ num
+	}
+	return sum ^ len(nums)
+}

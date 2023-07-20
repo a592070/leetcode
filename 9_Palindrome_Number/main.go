@@ -46,3 +46,19 @@ func isPalindrome(x int) bool {
 	}
 	return true
 }
+
+func isPalindrome2(x int) bool {
+	if x < 0 {
+		return false
+	}
+	if x < 10 {
+		return true
+	}
+	temp := x
+	var reverse int
+	for temp > 0 {
+		reverse = reverse*10 + temp%10
+		temp /= 10
+	}
+	return reverse == x
+}

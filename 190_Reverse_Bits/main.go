@@ -46,3 +46,14 @@ func reverseBits(num uint32) uint32 {
 
 	return rs
 }
+
+func reverseBits2(num uint32) uint32 {
+	var rs uint32
+	for i := 0; i < 32; i++ {
+		rs = rs << 1
+		rs = rs | (num & 1)
+		num = num >> 1
+	}
+
+	return rs
+}

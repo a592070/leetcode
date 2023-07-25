@@ -70,3 +70,33 @@ func insert(intervals [][]int, newInterval []int) [][]int {
 
 	return rs
 }
+
+func insert2(intervals [][]int, newInterval []int) [][]int {
+	size := len(intervals)
+	if size <= 0 {
+		return [][]int{newInterval}
+	}
+
+	var rs [][]int
+
+	for i, interval := range intervals {
+		if newInterval[1] < interval[0] {
+			rs = append(rs, newInterval)
+			rs = append(rs, intervals[i:]...)
+			return rs
+		}
+
+		if newInterval[0] > interval[1] {
+			rs = append(rs, interval)
+			continue
+		}
+
+		if newInterval[0] > interval[0] {
+			newInterval[0] = interval[0]
+		}
+		if newInterval[1] < interval[1] {
+			newInterval[1] = interval[1]
+		}
+	}
+	return append(rs, newInterval)
+}

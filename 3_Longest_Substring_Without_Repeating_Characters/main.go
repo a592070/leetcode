@@ -44,3 +44,31 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	return maxLen
 }
+
+func lengthOfLongestSubstring2(s string) int {
+	result := 0
+	start := 0
+	charIndexMap := make(map[uint8]int)
+	for end := 0; end < len(s); end++ {
+		duplicateIndex, isDuplicate := charIndexMap[s[end]]
+		if isDuplicate {
+			result = max(result, end-start)
+
+			for i := start; i <= duplicateIndex; i++ {
+				delete(charIndexMap, s[i])
+			}
+			start = duplicateIndex + 1
+		}
+		charIndexMap[s[end]] = end
+	}
+	result = max(result, len(s)-start)
+	return result
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	} else {
+		return b
+	}
+}

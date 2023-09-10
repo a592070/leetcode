@@ -7,6 +7,10 @@ func main() {
 	fmt.Println(findRedundant(arr))
 }
 
+/*
+*
+Let even sum equals odd sum when remove the redundant number.
+*/
 func findRedundant(planets []int32) int32 {
 	size := len(planets)
 	for i := 0; i < len(planets); i++ {

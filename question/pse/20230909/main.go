@@ -3,6 +3,11 @@ package main
 func main() {
 
 }
+
+/*
+*
+Is able represent money by 3, 5, 7 coins?
+*/
 func availableRepresentMoney(money int) bool {
 	if money == 0 {
 		return true

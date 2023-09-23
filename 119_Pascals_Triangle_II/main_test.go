@@ -47,8 +47,11 @@ func Test_getRow(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := getRow(tt.args.rowIndex); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("getRow() = %v, want %v", got, tt.want)
+			if got := getRowV1(tt.args.rowIndex); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("getRowV1() = %v, want %v", got, tt.want)
+			}
+			if got := getRowV2(tt.args.rowIndex); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("getRowV2() = %v, want %v", got, tt.want)
 			}
 		})
 	}

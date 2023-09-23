@@ -7,7 +7,15 @@ func main() {
 *
 C(m-1)(k+1) = C(m)(k) + C(m)(k+1)
 */
-func getRow(rowIndex int) []int {
+func getRowV1(rowIndex int) []int {
+	rs := []int{}
+	for i := 0; i <= rowIndex; i++ {
+		rs = append(rs, int(compose(rowIndex, i)))
+	}
+	return rs
+}
+
+func getRowV2(rowIndex int) []int {
 	rs := make([]int, rowIndex+1)
 	rs[0] = 1
 	for i := 1; i <= rowIndex; i++ {

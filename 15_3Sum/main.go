@@ -58,3 +58,43 @@ func threeSum(nums []int) [][]int {
 
 	return rs
 }
+
+func threeSumV2(nums []int) [][]int {
+	size := len(nums)
+	sort.Ints(nums)
+	rs := [][]int{}
+	for i := 0; i < size-2; i++ {
+		// skip same first value
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+
+		left := i + 1
+		right := size - 1
+
+		for left < right {
+			sum := nums[i] + nums[left] + nums[right]
+			if sum == 0 {
+				rs = append(rs, []int{nums[i], nums[left], nums[right]})
+				right--
+				// skip duplicate from right
+				for left < right && nums[right] == nums[right+1] {
+					right--
+				}
+			} else if sum > 0 {
+				right--
+				// skip duplicate from right
+				//for left < right && nums[right] == nums[right+1] {
+				//	right--
+				//}
+			} else {
+				left++
+				// skip duplicate from left
+				//for left < right && nums[left] == nums[left-1] {
+				//	left++
+				//}
+			}
+		}
+	}
+	return rs
+}

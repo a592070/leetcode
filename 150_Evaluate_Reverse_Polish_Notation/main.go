@@ -54,3 +54,56 @@ func operator(n1, n2 int, op string) int {
 	}
 	return -1
 }
+
+func isOperator(operator string) bool {
+	switch operator {
+	case "+":
+		return true
+	case "-":
+		return true
+	case "*":
+		return true
+	case "/":
+		return true
+	}
+	return false
+}
+
+type stack struct {
+	collection []int
+}
+
+func (s *stack) pop() int {
+	ele := s.collection[len(s.collection)-1]
+	s.collection = s.collection[:len(s.collection)-1]
+	return ele
+}
+func (s *stack) push(element int) {
+	s.collection = append(s.collection, element)
+}
+func (s *stack) len() int {
+	return len(s.collection)
+}
+
+func evalRPNUsingStack(tokens []string) int {
+	if len(tokens) <= 0 {
+		return 0
+	} else if len(tokens) == 1 {
+		return toInt(tokens[0])
+	}
+
+	s := stack{[]int{}}
+	for _, token := range tokens {
+		if isOperator(token) {
+			n1 := s.pop()
+			n2 := s.pop()
+			// should reverse the number's order
+			rs := operator(n2, n1, token)
+			s.push(rs)
+		} else {
+			s.push(toInt(token))
+		}
+	}
+
+	return s.pop()
+}
